@@ -6,24 +6,240 @@
 	"output": {
 		"abi": [
 			{
+				"inputs": [],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "votingId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "pilihanId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "namaPemenang",
+						"type": "string"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "jumlahSuara",
+						"type": "uint256"
+					}
+				],
+				"name": "PemenangTerpilih",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "votingId",
+						"type": "uint256"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "pemilih",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "pilihanId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "namaPilihan",
+						"type": "string"
+					}
+				],
+				"name": "SuaraDiberikan",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "votingId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "judul",
+						"type": "string"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "waktuMulai",
+						"type": "uint256"
+					}
+				],
+				"name": "VotingDibuat",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "votingId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "judul",
+						"type": "string"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "totalSuara",
+						"type": "uint256"
+					}
+				],
+				"name": "VotingDitutup",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_votingId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_pilihanId",
+						"type": "uint256"
+					}
+				],
+				"name": "berikanSuara",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "string",
 						"name": "_judul",
 						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_deskripsi",
+						"type": "string"
+					},
+					{
+						"internalType": "string[]",
+						"name": "_pilihan",
+						"type": "string[]"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_durasiJam",
+						"type": "uint256"
 					}
 				],
+				"name": "buatVoting",
+				"outputs": [],
 				"stateMutability": "nonpayable",
-				"type": "constructor"
+				"type": "function"
 			},
 			{
 				"inputs": [],
-				"name": "admin",
+				"name": "daftarSemuaVoting",
 				"outputs": [
 					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
+						"internalType": "uint256[]",
+						"name": "ids",
+						"type": "uint256[]"
+					},
+					{
+						"internalType": "string[]",
+						"name": "juduls",
+						"type": "string[]"
+					},
+					{
+						"internalType": "bool[]",
+						"name": "statusAktif",
+						"type": "bool[]"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "totalSuaras",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_votingId",
+						"type": "uint256"
+					}
+				],
+				"name": "infoVoting",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "judul",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "deskripsi",
+						"type": "string"
+					},
+					{
+						"internalType": "bool",
+						"name": "aktif",
+						"type": "bool"
+					},
+					{
+						"internalType": "uint256",
+						"name": "totalSuara",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "waktuMulai",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "waktuSelesai",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "jumlahPilihan",
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -31,7 +247,7 @@
 			},
 			{
 				"inputs": [],
-				"name": "getJumlahOpsi",
+				"name": "jumlahVoting",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -46,119 +262,87 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "index",
+						"name": "_votingId",
 						"type": "uint256"
 					}
 				],
-				"name": "getOpsi",
+				"name": "lihatHasil",
 				"outputs": [
 					{
-						"internalType": "string",
+						"internalType": "string[]",
+						"name": "namaPilihan",
+						"type": "string[]"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "jumlahSuaraPerPilihan",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address",
 						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_votingId",
+						"type": "uint256"
+					}
+				],
+				"name": "pemenangSementara",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "pilihanId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "namaPemenang",
 						"type": "string"
 					},
 					{
 						"internalType": "uint256",
-						"name": "",
+						"name": "jumlahSuara",
 						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "getSemuaOpsi",
-				"outputs": [
-					{
-						"components": [
-							{
-								"internalType": "string",
-								"name": "nama",
-								"type": "string"
-							},
-							{
-								"internalType": "uint256",
-								"name": "jumlahSuara",
-								"type": "uint256"
-							}
-						],
-						"internalType": "struct EVotingLingkungan.Opsi[]",
-						"name": "",
-						"type": "tuple[]"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "judulVoting",
-				"outputs": [
-					{
-						"internalType": "string",
-						"name": "",
-						"type": "string"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"name": "sudahMemilih",
-				"outputs": [
+					},
 					{
 						"internalType": "bool",
-						"name": "",
+						"name": "adaSeri",
 						"type": "bool"
 					}
 				],
 				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "string",
-						"name": "_namaOpsi",
-						"type": "string"
-					}
-				],
-				"name": "tambahOpsi",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "tutupVoting",
-				"outputs": [],
-				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "_indexOpsi",
+						"name": "_votingId",
 						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "_alamat",
+						"type": "address"
 					}
 				],
-				"name": "vote",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "votingAktif",
+				"name": "sudahVoting",
 				"outputs": [
 					{
 						"internalType": "bool",
@@ -168,11 +352,64 @@
 				],
 				"stateMutability": "view",
 				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_votingId",
+						"type": "uint256"
+					}
+				],
+				"name": "tutupVoting",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
 			}
 		],
 		"devdoc": {
+			"details": "Sistem e-voting untuk keputusan warga lingkungan      1 alamat wallet = 1 suara per topik voting",
 			"kind": "dev",
-			"methods": {},
+			"methods": {
+				"berikanSuara(uint256,uint256)": {
+					"details": "Warga memberikan suara",
+					"params": {
+						"_pilihanId": "Index pilihan (mulai dari 0)",
+						"_votingId": "ID voting yang diikuti"
+					}
+				},
+				"buatVoting(string,string,string[],uint256)": {
+					"details": "Buat topik voting baru",
+					"params": {
+						"_deskripsi": "Penjelasan singkat topik voting",
+						"_durasiJam": "Durasi voting dalam jam (0 = tidak terbatas)",
+						"_judul": "Judul voting (misal: \"Jadwal Kerja Bakti Bulan Ini\")",
+						"_pilihan": "Array nama-nama pilihan (min 2)"
+					}
+				},
+				"daftarSemuaVoting()": {
+					"details": "Lihat daftar semua voting (id, judul, status)"
+				},
+				"infoVoting(uint256)": {
+					"details": "Ambil info dasar sebuah voting"
+				},
+				"lihatHasil(uint256)": {
+					"details": "Lihat semua pilihan dan jumlah suaranya"
+				},
+				"pemenangSementara(uint256)": {
+					"details": "Ambil pemenang voting (bisa dipanggil saat voting masih aktif)"
+				},
+				"sudahVoting(uint256,address)": {
+					"details": "Cek apakah sebuah alamat sudah voting"
+				},
+				"tutupVoting(uint256)": {
+					"details": "Tutup voting secara manual oleh owner",
+					"params": {
+						"_votingId": "ID voting yang ingin ditutup"
+					}
+				}
+			},
+			"title": "EVotingLingkungan",
 			"version": 1
 		},
 		"userdoc": {
@@ -198,11 +435,11 @@
 	},
 	"sources": {
 		"EVotingLingkungan.sol": {
-			"keccak256": "0xa6d00946aa5b6e11de09b4ddfb37584d8eca61fcc1d07d32600cb4fcfd069efe",
+			"keccak256": "0x6ec4db7f8a7414256dcc3fe23d9a7fbc8e16a716bc8bc6da3d18521a032f4699",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://1ef3928893023daff9e24e7d1435c6c2a0dc254954da994a555b86e5bd911cc8",
-				"dweb:/ipfs/QmZTHdimo6pSLD9KxyoJtUMHC5QwL8Kyw186xxbLimPn8z"
+				"bzz-raw://8974fc14ebd2d713b675ede3b4c299349edf64570e7455cf0d344d5827fd19a1",
+				"dweb:/ipfs/QmfKhyxBV145V7RdMP7B6jRB7fzUqSGBzyHVzRaTfjLNai"
 			]
 		}
 	},
